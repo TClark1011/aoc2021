@@ -1,0 +1,29 @@
+{
+  "name": "aoc2021",
+  "version": "1.0.0",
+  "description": "Advent of Code 2021 - solutions",
+  "type": "module",
+  "scripts": {
+    "start": "aocrunner day",
+    "build": "aocrunner build",
+    "format": "prettier -w src"
+  },
+  "keywords": [
+    "aoc"
+  ],
+  "author": "Thomas Clark",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@types/ramda": "^0.27.58",
+    "aocrunner": "^1.4.5",
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "ramda": "^0.27.1",
+    "type-fest": "^2.8.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
