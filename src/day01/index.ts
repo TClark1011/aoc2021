@@ -1,7 +1,7 @@
 import run from "aocrunner";
-import { map, pipe } from "ramda";
+import { map, pipe, aperture, sum, reduce, multiply } from "ramda";
 import { splitStringByNewLine } from "../utils/index.js";
-import { evaluateDepthChanges, sumSlidingTripletWindow } from "./utils.js";
+import { evaluateDepthChanges } from "./utils.js";
 
 export type ResultTracker = {
   result: number;
@@ -11,7 +11,7 @@ export type ResultTracker = {
 const processInput = pipe(splitStringByNewLine, map(parseInt));
 
 const part1 = pipe(processInput, evaluateDepthChanges);
-const part2 = pipe(processInput, sumSlidingTripletWindow, evaluateDepthChanges);
+const part2 = pipe(processInput, aperture(3), map(sum), evaluateDepthChanges);
 
 const exampleInput = `
   199

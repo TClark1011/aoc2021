@@ -55,22 +55,21 @@ export const computeNextPosition = (
 });
 
 const computeAdvancedCommandAimModifier: CommandEvaluator<number> = (command) =>
-  deriveCommandAxis(command) === "depth"
+  deriveIfDirectionIsVertical(command.direction)
     ? negateWhenNot(deriveIfCommandWillIncrease(command), command.distance)
     : 0;
 
-const evaluateAdvancedCommandDistanceModifier: CommandEvaluator<number> =
-  ifElse(
-    pipe(deriveCommandAxis, equals<keyof Position>("horizontal")),
-    prop("distance"),
-    give(0),
-  );
+const computeAdvancedCommandDistanceModifier: CommandEvaluator<number> = ifElse(
+  pipe(deriveCommandAxis, equals<keyof Position>("horizontal")),
+  prop("distance"),
+  give(0),
+);
 
 export const computeNextAdvancedPosition = (
   currentPosition: AdvancedPosition,
   command: Command,
 ): AdvancedPosition => {
-  const distanceModifier = evaluateAdvancedCommandDistanceModifier(command);
+  const distanceModifier = computeAdvancedCommandDistanceModifier(command);
   return {
     aim: currentPosition.aim + computeAdvancedCommandAimModifier(command),
     horizontal: currentPosition.horizontal + distanceModifier,

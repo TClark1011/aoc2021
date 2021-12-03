@@ -20,7 +20,6 @@ const part1 = pipe(
 const part2 = pipe(
   processInput,
   reduce(computeNextAdvancedPosition, advancedStartingPosition),
-  tap(console.log),
   computeFinalScore,
 );
 

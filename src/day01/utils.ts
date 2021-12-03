@@ -17,15 +17,3 @@ export const evaluateDepthChanges = pipe(
   }),
   prop("result"),
 );
-
-const addUpThreeElements = (numbers: number[]) => (startingIndex: number) => {
-  const windowElements = [
-    numbers?.[startingIndex],
-    numbers?.[startingIndex + 1],
-    numbers?.[startingIndex + 2],
-  ];
-  return windowElements.reduce(truthy, true) ? sum(windowElements) : -1;
-};
-
-export const sumSlidingTripletWindow = (numbers: number[]) =>
-  numbers.map(pipe(getMapIndex, addUpThreeElements(numbers)));
